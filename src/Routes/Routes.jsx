@@ -1,4 +1,4 @@
-
+import ErrorPage from '../Pages/ErrorPage.jsx';
 import Home from '../Pages/Home.jsx';
 import Root from './../Layouts/Root';
 import {
@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
-      
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
           path: "/",

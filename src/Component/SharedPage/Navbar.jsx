@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             
-              <Link to='/'><h1 className='text-white text-lg md:text-xl lg:text-2xl font-bold uppercase'>soulmate</h1></Link>
+              <Link className='flex items-center gap-2' to='/'><img src="https://i.ibb.co/pJGNNrV/Untitled.png" alt="" /> <h1 className='text-white text-lg md:text-xl lg:text-2xl font-bold uppercase'>soulmate</h1></Link>
 
             {/* Mobile menu button */}
             <div className="flex lg:hidden">
