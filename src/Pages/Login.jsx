@@ -7,10 +7,52 @@ import { FaEye, FaGoogle } from 'react-icons/fa';
 import useAuth from './../Hooks/useAuth';
 import { useState } from 'react';
 import { IoEyeOffSharp } from 'react-icons/io5';
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  const {handleLoginAccount} = useAuth();
     const {handleGoogleLogin} = useAuth()
     const [isPassword , setIsPassword] = useState(true);
+    const {
+      register,
+      handleSubmit,
+    } = useForm();
+  
+    const onSubmit = (data) => {
+      const {email , password} = data;
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Invalid email format. Please use the format: example@example.com",
+          });
+        }
+        if(!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)){
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text:  "Password must be at least 6 characters long and contain at least one uppercase letter and one lowercase letter.",
+          });
+        }
+      handleLoginAccount(email, password)
+      .then(() => {
+       
+        Swal.fire({
+            title: "Good job!",
+            text:  "You've successfully logged in. Let's get started!",
+            icon: "success"
+          });
+        // ...
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error?.message,
+        });
+      });
+    }
     return (
 <div className="bg-white relative lg:py-20">
   <div className="flex flex-col items-center min-h-screen justify-between mx-auto max-w-[1440px]  lg:w-10/12 w-11/12 lg:flex-row">
@@ -24,17 +66,17 @@ const Login = () => {
         <div className="flex flex-col items-start justify-start p-10 bg-white shadow-2xl rounded-xl
       relative z-10">
           <p className="text-4xl font-medium text-center leading-snug font-serif">Login account</p>
-          <form className="w-full mt-6 relative space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-6 relative space-y-8">
             <div className="relative">
               <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">Email</p>
-              <input placeholder="123@ex.com" type="email" className="border placeholder-gray-400 focus:outline-none
+              <input {...register("email", { required: true })}  placeholder="123@ex.com" type="email" className="border placeholder-gray-400 focus:outline-none
             focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
             border-gray-300 rounded-md" />
             </div>
             <div className="relative">
               <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600
             absolute">Password</p>
-              <input placeholder="Password" type={isPassword? "password" : 'text'} className="border placeholder-gray-400 focus:outline-none
+              <input {...register("password", { required: true })}  placeholder="Password" type={isPassword? "password" : 'text'} className="border placeholder-gray-400 focus:outline-none
             focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
             border-gray-300 rounded-md" />
             <span onClick={()=> setIsPassword(!isPassword)} className='absolute text-xl right-5 top-1/2 -translate-y-1/2'>{isPassword ? <FaEye></FaEye> : <IoEyeOffSharp></IoEyeOffSharp>

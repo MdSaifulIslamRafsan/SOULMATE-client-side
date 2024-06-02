@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -28,6 +28,9 @@ const AuthProvider = ({children}) => {
     };
     const handleRegisterAccount = (email , password) => {
         return createUserWithEmailAndPassword(auth , email , password);
+    }
+    const handleLoginAccount = (email , password) => {
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     useEffect(()=>{
@@ -58,7 +61,7 @@ const handleLogout = () =>{
         });
     })
 }
-    const userInfo = {user , loading , handleGoogleLogin , handleLogout , handleRegisterAccount};
+    const userInfo = {user , loading , handleGoogleLogin , handleLogout , handleRegisterAccount , handleLoginAccount};
     return (
         <AuthContext.Provider value={userInfo}>
             {children}
