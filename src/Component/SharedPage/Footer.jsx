@@ -42,13 +42,11 @@ const Footer = () => {
             </div>
             <p>Soulmate Matrimony</p>
             <p className="my-3 block">
-             <address>1234 Example Street, Floor 4</address>
-             <address>San Francisco, CA</address>
+             1234 Example Street, Floor 4
+             San Francisco, CA
             </p>
             <Link to={'/'} className="my-3 block">
-            Email: soulmate01@gmail.com
-
-
+                Email: soulmate01@gmail.com
             </Link>
           </div>
         </div>

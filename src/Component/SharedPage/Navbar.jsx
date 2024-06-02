@@ -3,9 +3,11 @@ import { FiAlignLeft, FiX } from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
+import useAuth from '../../Hooks/useAuth';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const {user , handleLogout} = useAuth();
+  
   return (
     <nav className="fixed z-50 w-full top-0 shadow py-3 bg-gray-800">
       <div className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto">
@@ -37,15 +39,16 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center mt-4 lg:mt-0">
-           <AwesomeButton href='/login' type="primary">Login</AwesomeButton>
-
+              {!user ?  <AwesomeButton href='/login' type="primary">Login</AwesomeButton> :  <div className='flex gap-3'>
+              <AwesomeButton onPress={() => handleLogout()} type="primary">Logout</AwesomeButton>
               <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                 <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
-                  <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" className="object-cover w-full h-full" alt="avatar" />
+                  <img src={user?.photoURL} className="object-cover w-full h-full" alt="avatar" />
                 </div>
 
-                <h3 className="mx-2 text-gray-200 lg:hidden">Khatab wedaa</h3>
-              </button>
+                <h3 className="mx-2 text-gray-200 lg:hidden">{user?.displayName}</h3>
+              </button></div>}
+           
             </div>
           </div>
         </div>
