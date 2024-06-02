@@ -1,3 +1,4 @@
+import BoiDatas from '../Pages/BoiDatas.jsx';
 import ErrorPage from '../Pages/ErrorPage.jsx';
 import Home from '../Pages/Home.jsx';
 import Login from '../Pages/Login.jsx';
@@ -6,6 +7,7 @@ import Root from './../Layouts/Root';
 import {
   createBrowserRouter,
 } from "react-router-dom";
+import PrivateRoute from './PrivateRoute.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -23,6 +25,10 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <Register></Register>,
+        },
+        {
+          path: "/boiDatas",
+          element: <PrivateRoute><BoiDatas></BoiDatas></PrivateRoute>,
         },
       ]
     },

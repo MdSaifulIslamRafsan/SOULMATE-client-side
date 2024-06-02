@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import registerAnimation from "../assets/Register.json";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
@@ -16,6 +16,9 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const Register = () => {
   const { handleRegisterAccount } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const { register, handleSubmit , reset} = useForm();
   const axiosPublic = useAxiosPublic()
   const onSubmit = (data) => {
@@ -52,6 +55,7 @@ const Register = () => {
       if(res.data.success){
         handleRegisterAccount(email, password)
       .then(() => {
+        navigate(from, { replace: true });
         updateProfile(auth.currentUser,{
           displayName:name , 
           photoURL: photoUrl

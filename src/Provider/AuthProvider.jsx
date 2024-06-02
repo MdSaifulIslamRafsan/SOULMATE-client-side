@@ -8,10 +8,11 @@ const AuthProvider = ({children}) => {
     const [user , setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin = (navigate , from) => {
         setLoading(true);
         signInWithPopup(auth, googleProvider)
         .then(() => {
+            navigate(from, { replace: true });
             Swal.fire({
                 title: "Good job!",
                 text: "You have successfully logged into Google",
