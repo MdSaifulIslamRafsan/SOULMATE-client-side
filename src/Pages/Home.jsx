@@ -1,11 +1,15 @@
 import Carousel from "../Component/HomePage/Carousel";
+import PremiumMember from "../Component/HomePage/PremiumMember";
+import SuccessInfo from "../Component/HomePage/SuccessInfo";
 
 
 const Home = () => {
     return (
-        <div>
+        <>
             <Carousel></Carousel>
-        </div>
+            <PremiumMember></PremiumMember>
+            <SuccessInfo></SuccessInfo>
+        </>
     );
 };
 
