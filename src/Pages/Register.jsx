@@ -129,7 +129,7 @@ const Register = () => {
                   <p
                     className="font-medium text-gray-600"
                   >
-                     Upload file
+                     Upload Photo
                   </p>
                   <input
                     type="file"
