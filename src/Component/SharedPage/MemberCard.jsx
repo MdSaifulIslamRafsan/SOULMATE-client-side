@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
-const PremiumMemberCard = ({ card }) => {
+const MemberCard = ({ card }) => {
     const { biodata_id ,  profile_image, biodata_type, age, occupation, permanent_division_name } = card;
     return (
         <motion.div
@@ -32,4 +32,4 @@ const PremiumMemberCard = ({ card }) => {
     );
 };
 
-export default PremiumMemberCard;
+export default MemberCard;

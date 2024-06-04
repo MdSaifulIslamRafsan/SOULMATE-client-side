@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Vortex } from "react-loader-spinner";
-import PremiumMemberCard from "./PremiumMemberCard";
 import { useState } from "react";
 import { Dropdown, Button } from "keep-react";
+import MemberCard from "../SharedPage/MemberCard";
+
 const PremiumMember = () => {
   const axiosPublic = useAxiosPublic();
   const [sortOrder, setSortOrder] = useState("");
@@ -71,7 +72,7 @@ const PremiumMember = () => {
       </div>
       <div className="mb-20 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7">
         {premiumMemberDatas?.map((card) => (
-          <PremiumMemberCard key={card?._id} card={card}></PremiumMemberCard>
+          <MemberCard key={card?._id} card={card}></MemberCard>
         ))}
       </div>
     </section>

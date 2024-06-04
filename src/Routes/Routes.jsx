@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/boiDatas",
-          element: <PrivateRoute><BoiDatas></BoiDatas></PrivateRoute>,
+          element: <BoiDatas></BoiDatas>
         },
       ]
     },

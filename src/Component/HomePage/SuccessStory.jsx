@@ -64,7 +64,7 @@ const SuccessStory = () => {
           </Dropdown.Item>
         </Dropdown.List>
       </div>
-      </Dropdown>
+      </Dropdown> 
       </div>
       <div className="mb-20 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5 ">
 
