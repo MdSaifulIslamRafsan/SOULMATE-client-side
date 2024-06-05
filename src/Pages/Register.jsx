@@ -53,6 +53,7 @@ const Register = () => {
     .then((res)=>{
       const photoUrl = res?.data?.data?.display_url;
       if(res.data.success){
+        
         handleRegisterAccount(email, password)
       .then(() => {
         navigate(from, { replace: true });

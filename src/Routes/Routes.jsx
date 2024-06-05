@@ -8,6 +8,8 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import PrivateRoute from './PrivateRoute.jsx';
+import Dashboard from '../Layouts/Dashboard.jsx';
+import EditBoidata from '../Pages/Dashboard/Users/EditBoidata.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -32,5 +34,27 @@ const router = createBrowserRouter([
         },
       ]
     },
+    {
+      path: '/dashboard',
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children:[
+        {
+          path: '/dashboard',
+          element: <EditBoidata></EditBoidata>,
+        },
+        {
+          path: 'ViewBiodata',
+          element: <EditBoidata></EditBoidata>,
+        },
+        {
+          path: 'MyContactRequest',
+          element: <EditBoidata></EditBoidata>,
+        },
+        {
+          path: 'FavouritesBiodata',
+          element: <EditBoidata></EditBoidata>,
+        },
+      ]
+    }
   ]);
 export default router;

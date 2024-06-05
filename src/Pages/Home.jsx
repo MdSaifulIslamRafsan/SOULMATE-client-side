@@ -9,7 +9,7 @@ const Home = () => {
         <>
             <Carousel></Carousel>
             <PremiumMember></PremiumMember>
-            <SuccessInfo></SuccessInfo>
+            {/* <SuccessInfo></SuccessInfo> */}
             <SuccessStory></SuccessStory>
         </>
     );
