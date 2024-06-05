@@ -13,13 +13,22 @@ const AuthProvider = ({children}) => {
     const handleGoogleLogin = (navigate , from) => {
         setLoading(true);
         signInWithPopup(auth, googleProvider)
-        .then(() => {
+        .then((res) => {
             navigate(from, { replace: true });
-            Swal.fire({
-                title: "Good job!",
-                text: "You have successfully logged into Google",
-                icon: "success"
-              });
+            const userInfo={
+                email: res?.user?.email,
+                name: res?.user?.displayName
+            }
+            axiosPublic.post('/users', userInfo)
+            .then((res)=>{
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You have successfully logged into Google",
+                        icon: "success"
+                      });
+                }
+            }) 
         })
         .catch((error)=>{
             Swal.fire({

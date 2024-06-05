@@ -56,17 +56,26 @@ const Register = () => {
         
         handleRegisterAccount(email, password)
       .then(() => {
-        navigate(from, { replace: true });
-        updateProfile(auth.currentUser,{
-          displayName:name , 
-          photoURL: photoUrl
+        const userInfo = {
+          email,
+          name
+        }
+        axiosPublic.post('/users' , userInfo)
+        .then((res)=>{
+            if(res.data.insertedId){
+              navigate(from, { replace: true });
+              updateProfile(auth.currentUser,{
+                displayName:name , 
+                photoURL: photoUrl
+              })
+              reset();
+              Swal.fire({
+                title: "Good job!",
+                text: "Congratulations! Your account has been successfully created.",
+                icon: "success",
+              });
+            }
         })
-        reset();
-        Swal.fire({
-          title: "Good job!",
-          text: "Congratulations! Your account has been successfully created.",
-          icon: "success",
-        });
       })
       .catch((error) => {
         Swal.fire({

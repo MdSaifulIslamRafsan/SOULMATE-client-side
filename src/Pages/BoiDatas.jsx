@@ -21,8 +21,6 @@ const BoiDatas = () => {
     setFilters(data);
   };
   const { ageMin, ageMax, type, division } = filters;
-  console.log(ageMin, ageMax, type, division);
-
   const { data: premiumMemberDatas = [], isLoading } = useQuery({
     queryKey: ["boiDatas", filters],
     queryFn: () =>
