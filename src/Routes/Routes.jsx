@@ -13,6 +13,8 @@ import EditBoidata from '../Pages/Dashboard/Users/EditBoidata.jsx';
 import AdminDashboard from '../Pages/Dashboard/Admin/AdminDashboard.jsx';
 import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers.jsx';
 import DetailsPage from '../Pages/DetailsPage.jsx';
+import AdminRoute from './AdminRoute.jsx';
+import FavouritesBiodata from '../Pages/Dashboard/Users/FavouritesBiodata.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -59,24 +61,24 @@ const router = createBrowserRouter([
         },
         {
           path: 'FavouritesBiodata',
-          element: <EditBoidata></EditBoidata>,
+          element: <FavouritesBiodata></FavouritesBiodata>,
         },
         // admin route
         {
           path: 'AdminDashboard',
-          element: <AdminDashboard></AdminDashboard>,
+          element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>,
         },
         {
           path: 'manage',
-          element: <ManageUsers></ManageUsers>,
+          element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
         },
         {
           path: 'approvedPremium',
-          element: <EditBoidata></EditBoidata>,
+          element: <AdminRoute><EditBoidata></EditBoidata></AdminRoute>,
         },
         {
           path: 'approvedContactRequest',
-          element: <EditBoidata></EditBoidata>,
+          element: <AdminRoute><EditBoidata></EditBoidata></AdminRoute>,
         },
       ]
     }
