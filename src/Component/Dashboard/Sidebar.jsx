@@ -5,11 +5,19 @@ import { BsFillHouseAddFill, BsGraphUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { MdHomeWork } from "react-icons/md";
+import { MdContactPhone, MdHomeWork } from "react-icons/md";
+import { FaAddressCard, FaEdit, FaUsers } from "react-icons/fa";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Sidebar = () => {
+  // Todo :
+  const [isAdmin] = useAdmin();
   const { handleLogout } = useAuth();
   const [isActive, setActive] = useState(false);
+
+
+ 
+  
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -52,8 +60,10 @@ const Sidebar = () => {
           </div>
           <div className="flex flex-col justify-between flex-1 ">
             <nav>
-              <NavLink
-                to="/dashboard"
+              {
+                isAdmin? <>
+                   <NavLink
+                to="/dashboard/AdminDashboard"
                 end
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -63,11 +73,63 @@ const Sidebar = () => {
               >
                 <BsGraphUp className="w-5 h-5" />
 
+                <span className="mx-4 font-medium">Admin Dashboard</span>
+              </NavLink>
+
+              <NavLink
+                to="/dashboard/manage"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <FaUsers className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Manage Users</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/approvedPremium"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <FaAddressCard className="w-5 h-5"/>
+
+                <span className="mx-4 font-medium"> Approved Premium</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/approvedContactRequest"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <MdContactPhone className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Approved Contact Request</span>
+              </NavLink>
+                
+                </> : <>
+                <NavLink
+                to="/dashboard/EditBiodata"
+                end
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <FaEdit className="w-5 h-5" />
+
                 <span className="mx-4 font-medium">Edit Biodata</span>
               </NavLink>
 
               <NavLink
-                to="ViewBiodata"
+                to="/dashboard/ViewBiodata"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -79,7 +141,7 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">View Biodata</span>
               </NavLink>
               <NavLink
-                to="MyContactRequest"
+                to="/dashboard/MyContactRequest"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -91,7 +153,7 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">My Contact Request</span>
               </NavLink>
               <NavLink
-                to="FavouritesBiodata"
+                to="/dashboard/FavouritesBiodata"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -102,6 +164,9 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Favourites Biodata</span>
               </NavLink>
+                </>
+              }
+           
             </nav>
           </div>
         </div>

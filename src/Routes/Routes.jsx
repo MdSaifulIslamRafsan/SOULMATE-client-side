@@ -10,6 +10,9 @@ import {
 import PrivateRoute from './PrivateRoute.jsx';
 import Dashboard from '../Layouts/Dashboard.jsx';
 import EditBoidata from '../Pages/Dashboard/Users/EditBoidata.jsx';
+import AdminDashboard from '../Pages/Dashboard/Admin/AdminDashboard.jsx';
+import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers.jsx';
+import DetailsPage from '../Pages/DetailsPage.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -32,6 +35,10 @@ const router = createBrowserRouter([
           path: "/boiDatas",
           element: <BoiDatas></BoiDatas>
         },
+        {
+          path: "/detailsPage/:id",
+          element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
+        },
       ]
     },
     {
@@ -39,7 +46,7 @@ const router = createBrowserRouter([
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
-          path: '/dashboard',
+          path: 'EditBiodata',
           element: <EditBoidata></EditBoidata>,
         },
         {
@@ -52,6 +59,23 @@ const router = createBrowserRouter([
         },
         {
           path: 'FavouritesBiodata',
+          element: <EditBoidata></EditBoidata>,
+        },
+        // admin route
+        {
+          path: 'AdminDashboard',
+          element: <AdminDashboard></AdminDashboard>,
+        },
+        {
+          path: 'manage',
+          element: <ManageUsers></ManageUsers>,
+        },
+        {
+          path: 'approvedPremium',
+          element: <EditBoidata></EditBoidata>,
+        },
+        {
+          path: 'approvedContactRequest',
           element: <EditBoidata></EditBoidata>,
         },
       ]

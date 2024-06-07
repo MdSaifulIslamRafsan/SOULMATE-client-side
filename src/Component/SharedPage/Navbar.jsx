@@ -4,10 +4,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import useAuth from '../../Hooks/useAuth';
+import useAdmin from '../../Hooks/useAdmin';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user , handleLogout} = useAuth();
-  
+  const [isAdmin] = useAdmin();
   return (
     <nav className="fixed z-50 w-full top-0 shadow py-3 bg-gray-800">
       <div className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto">
@@ -35,7 +36,10 @@ const Navbar = () => {
               <NavLink to={'/boiDatas'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 text-gray-200  hover:bg-gray-700">Biodatas</NavLink>
               <NavLink to={'/aboutUs'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 text-gray-200  hover:bg-gray-700"> About Us</NavLink>
               <NavLink to={'/contactUs'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 text-gray-200  hover:bg-gray-700"> Contact Us</NavLink>
-              <NavLink to={'/dashboard'} className="px-3 py-2 mx-3 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0 text-gray-200 hover:bg-gray-700">Dashboard</NavLink>
+              {
+                user && <NavLink to={isAdmin  ? '/dashboard/AdminDashboard' : '/dashboard/EditBiodata'} className="px-3 py-2 mx-3 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0 text-gray-200 hover:bg-gray-700">Dashboard</NavLink>
+              }
+              
             </div>
 
             <div className="flex items-center mt-4 lg:mt-0">

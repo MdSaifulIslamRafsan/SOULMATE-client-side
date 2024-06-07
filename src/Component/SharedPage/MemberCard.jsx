@@ -4,7 +4,11 @@ import 'react-awesome-button/dist/styles.css';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const MemberCard = ({ card }) => {
-    const { biodata_id, profile_image, biodata_type, age, occupation, permanent_division_name } = card;
+    const {_id, biodata_id, profile_image, biodata_type, age, occupation, permanent_division_name } = card;
+
+    if (!(biodata_id && profile_image && biodata_type && age && occupation && permanent_division_name)) {
+        return
+    }
 
     return (
         <motion.div
@@ -23,7 +27,7 @@ const MemberCard = ({ card }) => {
                 <p className="text-gray-700 text-base">Age: {age}</p>
                 <p className="text-gray-700 text-base">Occupation: {occupation}</p>
                 <p className="text-gray-700 text-base">Division: {permanent_division_name}</p>
-                <Link to='/login' className='w-full'>
+                <Link to={`/detailsPage/${_id}`} className='w-full'>
                     <AwesomeButton style={{ marginTop: '10px' }} type="primary" className='w-full'>
                         View Profile
                     </AwesomeButton>
