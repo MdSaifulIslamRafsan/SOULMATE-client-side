@@ -3,6 +3,7 @@ import useAxiosSecure from './../../../Hooks/useAxiosSecure';
 import DataTable from "react-data-table-component";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 
 
@@ -10,9 +11,10 @@ import Swal from "sweetalert2";
 const FavouritesBiodata = () => {
     
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
     const {data: usersData , refetch} = useQuery({
-        queryKey: ['users'],
-        queryFn: () => axiosSecure.get('/favouritesBiodata')
+        queryKey: ['users' , user?.email],
+        queryFn: () => axiosSecure.get(`/favouritesBiodata/${user?.email}`)
         .then((res)=>{
             return res.data;
         })

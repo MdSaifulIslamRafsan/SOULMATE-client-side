@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { AwesomeButton } from 'react-awesome-button';
-import 'react-awesome-button/dist/styles.css';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const MemberCard = ({ card }) => {

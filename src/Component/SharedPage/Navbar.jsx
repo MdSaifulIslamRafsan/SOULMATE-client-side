@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FiAlignLeft, FiX } from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
-import 'react-awesome-button/dist/styles.css';
 import useAuth from '../../Hooks/useAuth';
 import useAdmin from '../../Hooks/useAdmin';
 const Navbar = () => {

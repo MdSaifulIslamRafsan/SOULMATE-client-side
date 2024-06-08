@@ -15,6 +15,7 @@ import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers.jsx';
 import DetailsPage from '../Pages/DetailsPage.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import FavouritesBiodata from '../Pages/Dashboard/Users/FavouritesBiodata.jsx';
+import Checkout from '../Pages/payment/Checkout.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         {
           path: "/detailsPage/:id",
           element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
+        },
+        {
+          path: "/checkout/:biodataId",
+          element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
         },
       ]
     },

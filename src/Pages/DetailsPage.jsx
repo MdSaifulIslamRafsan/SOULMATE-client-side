@@ -1,14 +1,17 @@
 import { Vortex } from "react-loader-spinner";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import usePremium from "../Hooks/usePremium";
+import useAuth from "../Hooks/useAuth";
 
 const DetailsPage = () => {
   const axiosPublic = useAxiosPublic();
+  const {user} = useAuth();
+  const [isPremium , isPremiumLoading] = usePremium();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { data: boiDataDetails = [], isLoading } = useQuery({
@@ -18,8 +21,8 @@ const DetailsPage = () => {
         return res.data;
       }),
   });
+
   const {
-    _id,
     biodata_id,
     biodata_type,
     name,
@@ -44,6 +47,7 @@ const DetailsPage = () => {
 
 const addToFavorites = () => {
   const userInfo = {
+    contact_email: user?.email,
     biodata_id,
     name,
     permanent_division_name,
@@ -77,10 +81,10 @@ const addToFavorites = () => {
   
 }
 
+console.log(isPremium);
 
 
-
-  if (isLoading) {
+  if (isLoading || isPremiumLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Vortex
@@ -99,49 +103,59 @@ const addToFavorites = () => {
     <div className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto mt-8">
       <div className="mx-auto">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-4">
-            <div className="flex items-center">
+          <div className="">
+            <div className="flex gap-5 flex-col lg:flex-row p-5">
               <img
                 src={profile_image}
                 alt="Profile Image"
-                className="w-1/2 h-96 rounded-lg mr-10"
+                className="lg:w-1/2 w-full h-96 rounded-lg lg:mr-10"
               />
               <div>
+                <h5 className="font-bold text-lg">Boidata id:{biodata_id}</h5>
                 <h2 className="text-2xl font-bold">{name}</h2>
-                <p className="text-gray-600">Date of Birth: {date_of_birth}</p>
-                <p className="text-gray-600">Age: {age}</p>
-                <p className="text-gray-600">Height: {height}</p>
-                <p className="text-gray-600">Weight: {weight}</p>
-                <p className="text-gray-600">Occupation: {occupation}</p>
-                <p className="text-gray-600">Race: {race}</p>
+                <p className="text-gray-600"><span className="font-bold">Date of Birth:</span> {date_of_birth}</p>
+                <p className="text-gray-600"><span className="font-bold">Gender:</span> {biodata_type}</p>
+                <p className="text-gray-600"><span className="font-bold">Age:</span> {age}</p>
+                <p className="text-gray-600"><span className="font-bold">Height:</span> {height}</p>
+                <p className="text-gray-600"><span className="font-bold">Weight:</span> {weight}</p>
+                <p className="text-gray-600"><span className="font-bold">Occupation:</span> {occupation}</p>
+                <p className="text-gray-600"><span className="font-bold">Race:</span> {race}</p>
                 <p className="text-gray-600">
-                  {`Father's`} Name: {fathers_name}
+                  <span className="font-bold">{`Father's`} Name:</span> {fathers_name}
                 </p>
                 <p className="text-gray-600">
-                  {`Mother's`} Name: {mothers_name}
+                  <span className="font-bold">{`Mother's`} Name:</span> {mothers_name}
                 </p>
                 <p className="text-gray-600">
-                  Permanent Division: {permanent_division_name}
+                 <span className="font-bold"> Permanent Division:</span> {permanent_division_name}
                 </p>
                 <p className="text-gray-600">
-                  Present Division: {present_division_name}
+                  <span className="font-bold">Present Division:</span> {present_division_name}
                 </p>
                 <p className="text-gray-600">
-                  Expected Partner Age: {expected_partner_age}
+                  <span className="font-bold">Expected Partner Age:</span> {expected_partner_age}
                 </p>
                 <p className="text-gray-600">
-                  Expected Partner Height: {expected_partner_height}
+                  <span className="font-bold">Expected Partner Height:</span> {expected_partner_height}
                 </p>
                 <p className="text-gray-600">
-                  Expected Partner Weight: {expected_partner_weight}
+                  <span className="font-bold">Expected Partner Weight:</span> {expected_partner_weight}
                 </p>
+                {isPremium && <>
+                  <p className="text-gray-600">
+                  <span className="font-bold">Expected Partner Height:</span> {contact_email}
+                </p>
+                <p className="text-gray-600">
+                  <span className="font-bold">Expected Partner Weight:</span> {mobile_number}
+                </p>
+                </>}
               </div>
             </div>
-            <div className="mt-4 space-x-3">
-              <AwesomeButton onPress={() => addToFavorites()}  type="primary">Add to Favorites</AwesomeButton>
-              <AwesomeButton onPress={() => requestContactInfo()} type="primary">
+            <div className="mt-4 p-6 justify-center flex flex-col gap-5 md:flex-row">
+              <AwesomeButton  onPress={() => addToFavorites()}  type="primary">Add to Favorites</AwesomeButton>
+              {!isPremium && <Link  to={`/checkout/${biodata_id}`}><AwesomeButton className="w-full" type="primary">
                 Request Contact Information
-              </AwesomeButton>
+              </AwesomeButton></Link>}
             </div>
           </div>
         </div>

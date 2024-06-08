@@ -16,7 +16,7 @@ const AuthProvider = ({children}) => {
         .then((res) => {
             navigate(from, { replace: true });
             const userInfo={
-                email: res?.user?.email,
+                contact_email: res?.user?.email,
                 name: res?.user?.displayName
             }
             axiosPublic.post('/users', userInfo)

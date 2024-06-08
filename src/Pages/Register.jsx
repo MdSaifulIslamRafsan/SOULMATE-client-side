@@ -57,7 +57,7 @@ const Register = () => {
         handleRegisterAccount(email, password)
       .then(() => {
         const userInfo = {
-          email,
+          contact_email: email,
           name
         }
         axiosPublic.post('/users' , userInfo)
