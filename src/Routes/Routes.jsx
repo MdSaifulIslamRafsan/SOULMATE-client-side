@@ -16,6 +16,8 @@ import DetailsPage from '../Pages/DetailsPage.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import FavouritesBiodata from '../Pages/Dashboard/Users/FavouritesBiodata.jsx';
 import Checkout from '../Pages/payment/Checkout.jsx';
+import MyContactRequest from '../Pages/Dashboard/Users/MyContactRequest.jsx';
+import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequest.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -62,7 +64,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'MyContactRequest',
-          element: <EditBoidata></EditBoidata>,
+          element: <MyContactRequest></MyContactRequest>,
         },
         {
           path: 'FavouritesBiodata',
@@ -83,7 +85,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'approvedContactRequest',
-          element: <AdminRoute><EditBoidata></EditBoidata></AdminRoute>,
+          element: <AdminRoute><ApprovedContactRequest></ApprovedContactRequest></AdminRoute>,
         },
       ]
     }

@@ -14,14 +14,14 @@ const DetailsPage = () => {
   const [isPremium , isPremiumLoading] = usePremium();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: boiDataDetails = [], isLoading } = useQuery({
-    queryKey: ["boiDatas"],
+  const { data: boiDataDetails = {}, isLoading , refetch } = useQuery({
+    queryKey: ["boiDataDetails"],
     queryFn: () =>
       axiosPublic.get(`/detailsPage/${id}`).then((res) => {
         return res.data;
       }),
   });
-
+refetch();
   const {
     biodata_id,
     biodata_type,
@@ -81,7 +81,6 @@ const addToFavorites = () => {
   
 }
 
-console.log(isPremium);
 
 
   if (isLoading || isPremiumLoading) {
@@ -143,10 +142,10 @@ console.log(isPremium);
                 </p>
                 {isPremium && <>
                   <p className="text-gray-600">
-                  <span className="font-bold">Expected Partner Height:</span> {contact_email}
+                  <span className="font-bold">Email:</span> {contact_email}
                 </p>
                 <p className="text-gray-600">
-                  <span className="font-bold">Expected Partner Weight:</span> {mobile_number}
+                  <span className="font-bold">Phone No:</span> {mobile_number}
                 </p>
                 </>}
               </div>
