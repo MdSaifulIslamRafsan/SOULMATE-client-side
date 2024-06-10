@@ -7,6 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { Vortex } from "react-loader-spinner";
 import { AwesomeButton } from "react-awesome-button";
 import Swal from "sweetalert2";
+import useUserBoidata from "../../../Hooks/useUserBoidata";
 const BiodataType = [
   { value: "Male", label: "Male" },
   { value: "Female", label: "Female" },
@@ -120,13 +121,7 @@ const EditBoidata = () => {
   const axiosSecure = useAxiosSecure();
   const {user} = useAuth();
 
-  const { data: userBoidata = [], isLoading } = useQuery({
-    queryKey: ["userBoiatas"],
-    queryFn: () => axiosSecure.get(`/boiData/${user?.email}`)
-        .then((res) => {
-          return res.data;
-        }),
-  });
+ const {userBoidata , isLoading} = useUserBoidata();
 
   const { register, control, handleSubmit } = useForm();
 

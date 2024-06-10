@@ -19,6 +19,7 @@ import Checkout from '../Pages/payment/Checkout.jsx';
 import MyContactRequest from '../Pages/Dashboard/Users/MyContactRequest.jsx';
 import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequest.jsx';
 import ContactUs from '../Pages/ContactUs.jsx';
+import ViewBoidata from '../Pages/Dashboard/Users/ViewBoidata.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'ViewBiodata',
-          element: <EditBoidata></EditBoidata>,
+          element: <ViewBoidata></ViewBoidata>,
         },
         {
           path: 'MyContactRequest',
