@@ -7,11 +7,13 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import usePremium from "../Hooks/usePremium";
 import useAuth from "../Hooks/useAuth";
+import useAdmin from "../Hooks/useAdmin";
 
 const DetailsPage = () => {
   const axiosPublic = useAxiosPublic();
   const {user} = useAuth();
   const [isPremium , isPremiumLoading] = usePremium();
+  const [isAdmin , isAdminLoading] = useAdmin();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { data: boiDataDetails = {}, isLoading , refetch } = useQuery({
@@ -83,7 +85,7 @@ const addToFavorites = () => {
 
 
 
-  if (isLoading || isPremiumLoading) {
+  if (isLoading || isPremiumLoading || isAdminLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Vortex
@@ -140,7 +142,7 @@ const addToFavorites = () => {
                 <p className="text-gray-600">
                   <span className="font-bold">Expected Partner Weight:</span> {expected_partner_weight}
                 </p>
-                {isPremium && <>
+                {(isPremium || isAdmin) && <>
                   <p className="text-gray-600">
                   <span className="font-bold">Email:</span> {contact_email}
                 </p>
@@ -151,8 +153,11 @@ const addToFavorites = () => {
               </div>
             </div>
             <div className="mt-4 p-6 justify-center flex flex-col gap-5 md:flex-row">
-              <AwesomeButton  onPress={() => addToFavorites()}  type="primary">Add to Favorites</AwesomeButton>
-              {!isPremium && <Link  to={`/checkout/${biodata_id}`}><AwesomeButton className="w-full" type="primary">
+              {
+                !isAdmin && <AwesomeButton  onPress={() => addToFavorites()}  type="primary">Add to Favorites</AwesomeButton>
+              }
+              
+              {!(isPremium || isAdmin) && <Link  to={`/checkout/${biodata_id}`}><AwesomeButton className="w-full" type="primary">
                 Request Contact Information
               </AwesomeButton></Link>}
             </div>

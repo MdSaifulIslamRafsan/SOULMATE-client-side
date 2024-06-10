@@ -1,12 +1,31 @@
 import CountUp, { useCountUp } from 'react-countup';
+import useCount from '../../Hooks/useCount';
+import { Vortex } from 'react-loader-spinner';
 
 const SuccessInfo = () => {
+  const [Count , isLoading] = useCount();
+  console.log(Count);
     useCountUp({
         ref: 'counter',
         end: 100,
         enableScrollSpy: true,
         scrollSpyDelay: 1000,
       });
+      if (isLoading) {
+        return (
+          <div className="flex min-h-screen items-center justify-center">
+            <Vortex
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="vortex-loading"
+              wrapperStyle={{}}
+              wrapperClass="vortex-wrapper"
+              colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+            />
+          </div>
+        );
+      }
     return (
         <section
         id="features"
@@ -26,7 +45,7 @@ const SuccessInfo = () => {
               <div className="space-y-2">
                 <h3 className="font-bold"> Total Biodata</h3>
                 <p className="text-3xl font-bold text-muted-foreground">
-                <CountUp end={100} enableScrollSpy />
+                <CountUp end={Count?.totalBoidata} enableScrollSpy />
                 </p>
               </div>
             </div>
@@ -36,7 +55,7 @@ const SuccessInfo = () => {
               <div className="space-y-2">
                 <h3 className="font-bold"> Girls  Biodata</h3>
                 <p className="text-3xl font-bold text-muted-foreground">
-                <CountUp end={100} enableScrollSpy />
+                <CountUp end={Count?.femaleBoidata} enableScrollSpy />
                 </p>
               </div>
             </div>
@@ -46,7 +65,7 @@ const SuccessInfo = () => {
               <div className="space-y-2">
                 <h3 className="font-bold"> Boys Biodata</h3>
                 <p className="text-3xl font-bold text-muted-foreground">
-                <CountUp end={100} enableScrollSpy />
+                <CountUp end={Count?.maleBoidata} enableScrollSpy />
                 </p>
               </div>
             </div>
@@ -56,7 +75,7 @@ const SuccessInfo = () => {
               <div className="space-y-2">
                 <h3 className="font-bold">Total marriages</h3>
                 <p className="text-3xl font-bold text-muted-foreground">
-                <CountUp end={100} enableScrollSpy />
+                <CountUp end={Count?.successfulMarriages} enableScrollSpy />
                 </p>
               </div>
             </div>

@@ -21,6 +21,7 @@ import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequ
 import ContactUs from '../Pages/ContactUs.jsx';
 import ViewBoidata from '../Pages/Dashboard/Users/ViewBoidata.jsx';
 import ApprovedPremium from '../Pages/Dashboard/Admin/ApprovedPremium.jsx';
+import AboutUs from '../Pages/AboutUs.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         {
           path: "/contactUs",
           element: <ContactUs></ContactUs>
+        },
+        {
+          path: "/aboutUs",
+          element: <AboutUs></AboutUs>
         },
         {
           path: "/detailsPage/:id",

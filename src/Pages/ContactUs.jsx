@@ -2,7 +2,7 @@ import { AwesomeButton } from "react-awesome-button";
 
 const ContactUs = () => {
     return (
-<div className="grid my-20 sm:grid-cols-2 items-center gap-16  mx-auto max-w-4xl bg-white text-[#333] font-[sans-serif]">
+<div className="grid max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto my-20 sm:grid-cols-2 items-center gap-16 bg-white text-[#333] font-[sans-serif]">
     <div>
       <h1 className="text-3xl font-extrabold">{`Let's`} Talk</h1>
       <p className="text-sm text-gray-400 mt-3">
