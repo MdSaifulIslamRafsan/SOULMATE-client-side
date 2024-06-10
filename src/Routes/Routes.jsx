@@ -18,6 +18,7 @@ import FavouritesBiodata from '../Pages/Dashboard/Users/FavouritesBiodata.jsx';
 import Checkout from '../Pages/payment/Checkout.jsx';
 import MyContactRequest from '../Pages/Dashboard/Users/MyContactRequest.jsx';
 import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequest.jsx';
+import ContactUs from '../Pages/ContactUs.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         {
           path: "/boiDatas",
           element: <BoiDatas></BoiDatas>
+        },
+        {
+          path: "/contactUs",
+          element: <ContactUs></ContactUs>
         },
         {
           path: "/detailsPage/:id",

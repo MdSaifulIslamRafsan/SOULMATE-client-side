@@ -17,7 +17,7 @@ const ApprovedContactRequest = () => {
   refetch();
   const handleApprovedContactRequest = (user) => {
     axiosSecure
-      .patch(`/users/contactRequest/${user?.biodata_id}`)
+      .patch(`/users/contactRequest/${user?._id}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           refetch();
