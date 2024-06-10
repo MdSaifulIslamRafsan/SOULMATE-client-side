@@ -32,7 +32,7 @@ const ContactUs = () => {
               className="text-[#007bff] text-sm ml-3"
             >
               <small className="block">Mail</small>
-              <strong>info@example.com</strong>
+              <strong>soulmate01@gmail.com</strong>
             </a>
           </li>
         </ul>

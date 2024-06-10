@@ -20,6 +20,7 @@ import MyContactRequest from '../Pages/Dashboard/Users/MyContactRequest.jsx';
 import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequest.jsx';
 import ContactUs from '../Pages/ContactUs.jsx';
 import ViewBoidata from '../Pages/Dashboard/Users/ViewBoidata.jsx';
+import ApprovedPremium from '../Pages/Dashboard/Admin/ApprovedPremium.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -87,7 +88,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'approvedPremium',
-          element: <AdminRoute><EditBoidata></EditBoidata></AdminRoute>,
+          element: <AdminRoute><ApprovedPremium></ApprovedPremium></AdminRoute>,
         },
         {
           path: 'approvedContactRequest',
