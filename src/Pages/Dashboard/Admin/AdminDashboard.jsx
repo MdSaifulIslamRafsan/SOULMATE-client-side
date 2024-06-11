@@ -1,10 +1,10 @@
 import { Vortex } from "react-loader-spinner";
 import useCount from "../../../Hooks/useCount";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042' , '#ff1397'];
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -46,42 +46,42 @@ const AdminDashboard = () => {
   return (
     <div>
       <section className="text-gray-700 body-font">
-        <div className="container px-5 py-10 mx-auto">
-          <div className="flex flex-wrap -m-4 text-center">
-            <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-              <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+        <div className="py-10 lg:pr-5 px-2 mx-auto">
+          <div className=" grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 text-center">
+            <div className=" w-full">
+              <div className="border-2 border-gray-600 py-6 rounded-lg transform transition duration-500 hover:scale-105">
                 <h2 className="title-font font-medium text-3xl text-gray-900">
                   {count?.totalBoidata}
                 </h2>
                 <p className="leading-relaxed">Total Biodatas</p>
               </div>
             </div>
-            <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-              <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+            <div className=" w-full">
+              <div className="border-2 border-gray-600  py-6 rounded-lg transform transition duration-500 hover:scale-105">
                 <h2 className="title-font font-medium text-3xl text-gray-900">
                   {count?.maleBoidata}
                 </h2>
                 <p className="leading-relaxed">Male Biodatas</p>
               </div>
             </div>
-            <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-              <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+            <div className=" w-full">
+              <div className="border-2 border-gray-600  py-6 rounded-lg transform transition duration-500 hover:scale-105">
                 <h2 className="title-font font-medium text-3xl text-gray-900">
                   {count?.femaleBoidata}
                 </h2>
                 <p className="leading-relaxed">Female Biodatas</p>
               </div>
             </div>
-            <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-              <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+            <div className="  w-full">
+              <div className="border-2 border-gray-600 py-6 rounded-lg transform transition duration-500 hover:scale-105">
                 <h2 className="title-font font-medium text-3xl text-gray-900">
                   {count?.premiumBoidata}
                 </h2>
                 <p className="leading-relaxed">Premium Biodatas</p>
               </div>
             </div>
-            <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-              <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+            <div className=" w-full">
+              <div className="border-2 border-gray-600 py-6 rounded-lg transform transition duration-500 hover:scale-105">
                 <h2 className="title-font font-medium text-3xl text-gray-900">
                   {count?.totalRevenue}
                 </h2>

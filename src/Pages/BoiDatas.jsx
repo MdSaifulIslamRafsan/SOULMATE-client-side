@@ -1,37 +1,52 @@
+import React, { useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import { Vortex } from "react-loader-spinner";
 import MemberCard from "../Component/SharedPage/MemberCard";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import useAuth from './../Hooks/useAuth';
 
 const BoiDatas = () => {
   const axiosPublic = useAxiosPublic();
+  const {user} = useAuth();
   const [filters, setFilters] = useState({
     ageMin: "",
     ageMax: "",
     type: "",
     division: "",
+    page: 1,
   });
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    setFilters(data);
+    setFilters({ ...data, page: 1 }); 
   };
-  const { ageMin, ageMax, type, division } = filters;
-  const { data: premiumMemberDatas = [], isLoading } = useQuery({
-    queryKey: ["boiDatas", filters],
+
+  const { ageMin, ageMax, type, division, page } = filters;
+
+  const { data: paginatedData, isLoading } = useQuery({
+    queryKey: ["boiDatas", filters, user?.email],
     queryFn: () =>
       axiosPublic
         .get(
-          `/boiDatas?ageMin=${ageMin}&ageMax=${ageMax}&type=${type}&division=${division}`
+          `/boiDatas?email=${user?.email}&ageMin=${ageMin}&ageMax=${ageMax}&type=${type}&division=${division}&page=${page}`
         )
         .then((res) => {
           return res.data;
         }),
   });
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setFilters({ ...filters, page: page - 1 });
+    }
+  };
+
+  const handleNextPage = () => {
+    setFilters({ ...filters, page: page + 1 });
+  };
 
   if (isLoading) {
     return (
@@ -48,8 +63,9 @@ const BoiDatas = () => {
       </div>
     );
   }
+
   return (
-    <section className="max-w-[1440px] relative min-h-screen  lg:w-10/12 w-11/12 mx-auto my-20 grid gap-5 lg:grid-cols-4">
+    <section className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto my-20 grid gap-5 lg:grid-cols-4">
       <div className="shadow-2xl  lg:col-span-1">
         <div className="flex p-6">
           <form
@@ -58,7 +74,7 @@ const BoiDatas = () => {
           >
             <h2 className="text-xl font-bold mb-4">Filters</h2>
             <label className="block mb-4">
-              <span className="block  text-sm font-medium text-gray-700">
+              <span className="block text-sm font-medium text-gray-700">
                 Age Range:
               </span>
               <input
@@ -120,10 +136,25 @@ const BoiDatas = () => {
         </div>
       </div>
       <div className="lg:col-span-3">
-        <div className="grid grid-cols-2 gap-8">
-          {premiumMemberDatas?.map((card) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Display paginated data */}
+          {paginatedData?.data.map((card) => (
             <MemberCard key={card?._id} card={card}></MemberCard>
           ))}
+        </div>
+        <div className="flex justify-center items-center mt-10">
+          <AwesomeButton
+            type="primary"
+            className="mx-2"
+            onPress={handlePrevPage}
+            disabled={page === 1}
+          >
+            Previous
+          </AwesomeButton>
+          <span className="mx-2">Page {page}</span>
+          <AwesomeButton type="primary" className="mx-2" onPress={handleNextPage} disabled={page >= (paginatedData?.total / paginatedData?.pageSize)}>
+            Next
+          </AwesomeButton>
         </div>
       </div>
     </section>

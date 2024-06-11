@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import usePremium from "../Hooks/usePremium";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
+import MemberCard from "../Component/SharedPage/MemberCard";
 
 const DetailsPage = () => {
   const axiosPublic = useAxiosPublic();
@@ -23,7 +24,12 @@ const DetailsPage = () => {
         return res.data;
       }),
   });
-refetch();
+  refetch();
+const {boidata , similarBoidata} = boiDataDetails;
+
+  if(!boidata || !similarBoidata){
+    return 
+  }
   const {
     biodata_id,
     biodata_type,
@@ -44,8 +50,7 @@ refetch();
     expected_partner_weight,
     contact_email,
     mobile_number,
-  } = boiDataDetails;
-
+  } = boidata;
 
 const addToFavorites = () => {
   const userInfo = {
@@ -164,8 +169,14 @@ const addToFavorites = () => {
           </div>
         </div>
 
-        <div className="mt-8">
+        <div className="my-8">
           <h2 className="text-2xl font-bold mb-4">Similar Biodata</h2>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+           { 
+           similarBoidata.slice(0,3).map(boiDataInfo => <MemberCard key={boiDataInfo?._id} card={boiDataInfo}></MemberCard>)
+           }
+          </div>
+          
         </div>
       </div>
     </div>

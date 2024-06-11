@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsFillHouseAddFill, BsGraphUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { MdContactPhone, MdHomeWork } from "react-icons/md";
-import { FaAddressCard, FaEdit, FaUsers } from "react-icons/fa";
 import useAdmin from "../../Hooks/useAdmin";
+import { FcApproval, FcAssistant, FcBusinessContact, FcCollaboration, FcPieChart, FcPlus } from "react-icons/fc";
+import { LuView } from "react-icons/lu";
+import { GiLaurelsTrophy, GiLovers } from "react-icons/gi";
+import { FaUsers } from "react-icons/fa";
 
 const Sidebar = () => {
   // Todo :
@@ -71,7 +72,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <BsGraphUp className="w-5 h-5" />
+                <FcPieChart className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Admin Dashboard</span>
               </NavLink>
@@ -96,7 +97,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <FaAddressCard className="w-5 h-5"/>
+                <FcApproval className="w-5 h-5"/>
 
                 <span className="mx-4 font-medium"> Approved Premium</span>
               </NavLink>
@@ -108,9 +109,21 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <MdContactPhone className="w-5 h-5" />
+                <FcBusinessContact className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Approved Contact Request</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/SuccessStory"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <GiLaurelsTrophy className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Success Story</span>
               </NavLink>
                 
                 </> : <>
@@ -123,7 +136,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <FaEdit className="w-5 h-5" />
+                <FcPlus className="w-5 h-5"  />
 
                 <span className="mx-4 font-medium">Edit Biodata</span>
               </NavLink>
@@ -136,7 +149,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <BsFillHouseAddFill className="w-5 h-5" />
+                <LuView className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">View Biodata</span>
               </NavLink>
@@ -148,7 +161,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <MdHomeWork className="w-5 h-5" />
+                <FcAssistant className="w-5 h-5"  />
 
                 <span className="mx-4 font-medium">My Contact Request</span>
               </NavLink>
@@ -160,9 +173,21 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <MdHomeWork className="w-5 h-5" />
+                <GiLovers className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Favourites Biodata</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/gotMarried"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <FcCollaboration className="w-5 h-5"  />
+
+                <span className="mx-4 font-medium">Got Married</span>
               </NavLink>
                 </>
               }

@@ -54,7 +54,7 @@ const AboutUs = () => {
               <div className="flex">
                 <div className="ml-4">
                   <h4 className="text-lg font-medium leadi ">Our Values</h4>
-                  <ul className="mt-2 list-disc">
+                  <ul className="mt-2 pl-5 list-disc">
                     <li>
                       Integrity: We maintain the highest standards of integrity
                       in all our actions and services.
@@ -81,7 +81,7 @@ const AboutUs = () => {
               <div className="flex">
                 <div className="ml-4">
                   <h4 className="text-lg font-medium leadi ">What We Offer</h4>
-                  <ul className="mt-2 list-disc">
+                  <ul className="mt-2 pl-5 list-disc">
                     <li>
                       Verified Profiles: Each profile undergoes a thorough
                       verification process to ensure authenticity and
@@ -110,7 +110,17 @@ const AboutUs = () => {
               </div>
               <div className="">
             
-              <div className="ml-4">
+             
+            </div>
+            </div>
+          </div>
+          <div aria-hidden="true" className="mt-10 lg:mt-0">
+          <Lottie animationData={about} loop={true} />
+            
+          </div>
+        </div>
+      </div>
+      <div className="ml-4">
                 <h4 className="text-lg font-medium leadi ">Join Us</h4>
                 <p className="mt-2 ">
                   Join the thousands of happy couples who have found their life
@@ -124,15 +134,6 @@ const AboutUs = () => {
                   The SOULMATE Team.
                 </p>
               </div>
-            </div>
-            </div>
-          </div>
-          <div aria-hidden="true" className="mt-10 lg:mt-0">
-          <Lottie animationData={about} loop={true} />
-            
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

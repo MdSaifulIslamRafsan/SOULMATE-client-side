@@ -22,6 +22,8 @@ import ContactUs from '../Pages/ContactUs.jsx';
 import ViewBoidata from '../Pages/Dashboard/Users/ViewBoidata.jsx';
 import ApprovedPremium from '../Pages/Dashboard/Admin/ApprovedPremium.jsx';
 import AboutUs from '../Pages/AboutUs.jsx';
+import GotMarried from '../Pages/Dashboard/Users/GotMarried.jsx';
+import SuccessStory from '../Pages/Dashboard/Admin/SuccessStory.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -82,6 +84,10 @@ const router = createBrowserRouter([
           path: 'FavouritesBiodata',
           element: <FavouritesBiodata></FavouritesBiodata>,
         },
+        {
+          path: 'gotMarried',
+          element: <GotMarried></GotMarried>,
+        },
         // admin route
         {
           path: 'AdminDashboard',
@@ -98,6 +104,10 @@ const router = createBrowserRouter([
         {
           path: 'approvedContactRequest',
           element: <AdminRoute><ApprovedContactRequest></ApprovedContactRequest></AdminRoute>,
+        },
+        {
+          path: 'SuccessStory',
+          element: <AdminRoute><SuccessStory></SuccessStory></AdminRoute>,
         },
       ]
     }
