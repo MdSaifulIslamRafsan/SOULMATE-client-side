@@ -8,7 +8,8 @@ const GotMarried = () => {
   const axiosSecure = useAxiosSecure();
     const {
       register,
-      handleSubmit
+      handleSubmit,
+      reset
     } = useForm();
    
 
@@ -16,6 +17,7 @@ const GotMarried = () => {
       axiosSecure.post(`/successStory` , data)
       .then((res)=>{
        if(res.data.insertedId){
+        reset()
         Swal.fire({
           icon: 'success',
           title: 'Success!',

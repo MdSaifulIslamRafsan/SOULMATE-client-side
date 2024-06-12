@@ -13,7 +13,7 @@ const ApprovedPremium = () => {
         return res.data;
       }),
   });
- 
+ console.log(approvePremiumRequest);
   refetch();
   const handleApprovePremiumRequest = (user) => {
   

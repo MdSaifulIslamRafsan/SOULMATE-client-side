@@ -4,7 +4,6 @@ import { Vortex } from 'react-loader-spinner';
 
 const SuccessInfo = () => {
   const [Count , isLoading] = useCount();
-  console.log(Count);
     useCountUp({
         ref: 'counter',
         end: 100,

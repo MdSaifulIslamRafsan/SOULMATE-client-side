@@ -1,52 +1,48 @@
-import React, { useState } from "react";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { Vortex } from "react-loader-spinner";
 import MemberCard from "../Component/SharedPage/MemberCard";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import useAuth from './../Hooks/useAuth';
+import useAuth from "./../Hooks/useAuth";
 
 const BoiDatas = () => {
   const axiosPublic = useAxiosPublic();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [filters, setFilters] = useState({
     ageMin: "",
     ageMax: "",
     type: "",
     division: "",
-    page: 1,
   });
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    setFilters({ ...data, page: 1 }); 
+  const [pageNumber, setPageNumber] = useState(0); // State to manage current page number
+  const usersPerPage = 4; // Number of users to display per page
+  const pagesVisited = pageNumber * usersPerPage; // Calculate the index of the first user to be displayed on the current page
+
+  const handlePageChange = ({ selected }) => {
+    setPageNumber(selected); // Update the page number when a new page is selected
   };
 
-  const { ageMin, ageMax, type, division, page } = filters;
+  const onSubmit = (data) => {
+    setFilters(data);
+    setPageNumber(0); // Reset page number to 0 when filters are updated
+  };
 
-  const { data: paginatedData, isLoading } = useQuery({
+  const { ageMin, ageMax, type, division } = filters;
+  const { data: premiumMemberDatas = [], isLoading } = useQuery({
     queryKey: ["boiDatas", filters, user?.email],
     queryFn: () =>
       axiosPublic
         .get(
-          `/boiDatas?email=${user?.email}&ageMin=${ageMin}&ageMax=${ageMax}&type=${type}&division=${division}&page=${page}`
+          `/boiDatas?email=${user?.email}&ageMin=${ageMin}&ageMax=${ageMax}&type=${type}&division=${division}`
         )
         .then((res) => {
           return res.data;
         }),
   });
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setFilters({ ...filters, page: page - 1 });
-    }
-  };
-
-  const handleNextPage = () => {
-    setFilters({ ...filters, page: page + 1 });
-  };
 
   if (isLoading) {
     return (
@@ -64,6 +60,11 @@ const BoiDatas = () => {
     );
   }
 
+  // Paginate the user data
+  const displayUsers = premiumMemberDatas
+    .slice(pagesVisited, pagesVisited + usersPerPage)
+    .map((card) => <MemberCard key={card?._id} card={card}></MemberCard>);
+
   return (
     <section className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto my-20 grid gap-5 lg:grid-cols-4">
       <div className="shadow-2xl  lg:col-span-1">
@@ -74,7 +75,7 @@ const BoiDatas = () => {
           >
             <h2 className="text-xl font-bold mb-4">Filters</h2>
             <label className="block mb-4">
-              <span className="block text-sm font-medium text-gray-700">
+              <span className="block  text-sm font-medium text-gray-700">
                 Age Range:
               </span>
               <input
@@ -125,37 +126,41 @@ const BoiDatas = () => {
                 <option value="Sylhet">Sylhet</option>
               </select>
             </label>
-            <AwesomeButton
+            <button
               style={{ marginTop: "10px" }}
-              type="primary"
-              className="w-full"
+              type="submit"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Search
-            </AwesomeButton>
+            </button>
           </form>
         </div>
       </div>
       <div className="lg:col-span-3">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Display paginated data */}
-          {paginatedData?.data.map((card) => (
-            <MemberCard key={card?._id} card={card}></MemberCard>
-          ))}
-        </div>
-        <div className="flex justify-center items-center mt-10">
-          <AwesomeButton
-            type="primary"
-            className="mx-2"
-            onPress={handlePrevPage}
-            disabled={page === 1}
-          >
-            Previous
-          </AwesomeButton>
-          <span className="mx-2">Page {page}</span>
-          <AwesomeButton type="primary" className="mx-2" onPress={handleNextPage} disabled={page >= (paginatedData?.total / paginatedData?.pageSize)}>
-            Next
-          </AwesomeButton>
-        </div>
+        <div className="grid md:grid-cols-2 gap-8">{displayUsers}</div>
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          className="mt-10 text-center"
+          pageCount={Math.ceil(premiumMemberDatas.length / usersPerPage)}
+          onPageChange={handlePageChange}
+          containerClassName={"flex justify-center mt-4"}
+          pageClassName={"inline-block m-2"}
+          pageLinkClassName={
+            "rounded-md px-3 py-1"
+          }
+          activeClassName={
+            "bg-blue-500 text-white border border-blue-500 rounded-md"
+          }
+          previousClassName={"inline-block  m-2"}
+          nextClassName={"inline-block  m-2"}
+          previousLinkClassName={
+            "text-white border bg-blue-500 border-gray-300 rounded-md px-3 py-1"
+          }
+          nextLinkClassName={
+            "text-white border bg-blue-500  border-gray-300 rounded-md px-3 py-1"
+          }
+        />
       </div>
     </section>
   );

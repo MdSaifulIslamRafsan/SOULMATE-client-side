@@ -19,7 +19,7 @@ const SuccessStory = () => {
     setIsModalOpen(false);
   };
   const axiosSecure = useAxiosSecure();
-  const { data: successInfo, refetch } = useQuery({
+  const { data: successInfo = [], refetch } = useQuery({
     queryKey: ["successInfoForAdmin"],
     queryFn: () =>
       axiosSecure.get("/successInfoForAdmin").then((res) => {
