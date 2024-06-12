@@ -15,7 +15,7 @@ const ApprovedContactRequest = () => {
       }),
   });
  
-  refetch();
+  
   const handleApprovedContactRequest = (user) => {
     axiosSecure
       .patch(`/users/contactRequest/${user?._id}`)

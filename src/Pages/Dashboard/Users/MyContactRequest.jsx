@@ -7,14 +7,13 @@ import { Helmet } from "react-helmet";
 const MyContactRequest = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: usersData, refetch } = useQuery({
+  const { data: usersData } = useQuery({
     queryKey: ["myContactRequest", user?.email],
     queryFn: () =>
       axiosSecure.get(`/myContactRequest/${user?.email}`).then((res) => {
         return res.data;
       }),
   });
-  refetch();
 
   const columns = [
     {

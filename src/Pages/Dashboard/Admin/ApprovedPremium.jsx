@@ -14,7 +14,7 @@ const ApprovedPremium = () => {
         return res.data;
       }),
   });
-  refetch();
+ 
   const handleApprovePremiumRequest = (user) => {
     axiosSecure
       .patch(`/users/premium/${user?._id}`)

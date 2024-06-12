@@ -21,7 +21,7 @@ const FavoritesBiodata = () => {
         })
     });
     
-    refetch();
+    
     
 const handleDelete = (id) =>{
     Swal.fire({

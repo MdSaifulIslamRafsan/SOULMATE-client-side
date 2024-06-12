@@ -18,14 +18,13 @@ const DetailsPage = () => {
   const [isAdmin , isAdminLoading] = useAdmin();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: boiDataDetails = {}, isLoading , refetch } = useQuery({
-    queryKey: ["boiDataDetails"],
+  const { data: boiDataDetails = {}, isLoading  } = useQuery({
+    queryKey: ["boiDataDetails" , id],
     queryFn: () =>
       axiosPublic.get(`/detailsPage/${id}`).then((res) => {
         return res.data;
       }),
   });
-  refetch();
 const {boidata , similarBoidata} = boiDataDetails;
 
   if(!boidata || !similarBoidata){
