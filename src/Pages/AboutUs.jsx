@@ -1,8 +1,14 @@
 import Lottie from "lottie-react";
 import about from "../assets/About.json";
+import { Helmet } from "react-helmet";
 
 const AboutUs = () => {
   return (
+    <>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || About Us</title>
+    </Helmet>
     <section className="mx-auto max-w-[1440px]  lg:w-10/12 w-11/12 my-10">
       <div className="space-y-12">
         <div>
@@ -135,6 +141,8 @@ const AboutUs = () => {
                 </p>
               </div>
     </section>
+    </>
+   
   );
 };
 

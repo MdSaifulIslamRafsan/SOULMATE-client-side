@@ -14,7 +14,6 @@ import AdminDashboard from '../Pages/Dashboard/Admin/AdminDashboard.jsx';
 import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers.jsx';
 import DetailsPage from '../Pages/DetailsPage.jsx';
 import AdminRoute from './AdminRoute.jsx';
-import FavouritesBiodata from '../Pages/Dashboard/Users/FavouritesBiodata.jsx';
 import Checkout from '../Pages/payment/Checkout.jsx';
 import MyContactRequest from '../Pages/Dashboard/Users/MyContactRequest.jsx';
 import ApprovedContactRequest from '../Pages/Dashboard/Admin/ApprovedContactRequest.jsx';
@@ -24,6 +23,7 @@ import ApprovedPremium from '../Pages/Dashboard/Admin/ApprovedPremium.jsx';
 import AboutUs from '../Pages/AboutUs.jsx';
 import GotMarried from '../Pages/Dashboard/Users/GotMarried.jsx';
 import SuccessStory from '../Pages/Dashboard/Admin/SuccessStory.jsx';
+import FavoritesBiodata from '../Pages/Dashboard/Users/FavoritesBiodata.jsx';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -81,8 +81,8 @@ const router = createBrowserRouter([
           element: <MyContactRequest></MyContactRequest>,
         },
         {
-          path: 'FavouritesBiodata',
-          element: <FavouritesBiodata></FavouritesBiodata>,
+          path: 'FavoritesBiodata',
+          element: <FavoritesBiodata></FavoritesBiodata>,
         },
         {
           path: 'gotMarried',

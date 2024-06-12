@@ -3,6 +3,7 @@ import { AwesomeButton } from "react-awesome-button";
 import DataTable from "react-data-table-component";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,10 +14,8 @@ const ApprovedPremium = () => {
         return res.data;
       }),
   });
- console.log(approvePremiumRequest);
   refetch();
   const handleApprovePremiumRequest = (user) => {
-  
     axiosSecure
       .patch(`/users/premium/${user?._id}`)
       .then((res) => {
@@ -51,21 +50,36 @@ const ApprovedPremium = () => {
       name: "Email",
       selector: (user) => user?.userData?.contact_email,
     },
-    
+
     {
       name: "Action",
       selector: (user) =>
         user?.userData?.role === "premium" ? (
           "Approved"
         ) : (
-          <AwesomeButton onPress={() => handleApprovePremiumRequest(user?.userData)} type="primary">
+          <AwesomeButton
+            onPress={() => handleApprovePremiumRequest(user?.userData)}
+            type="primary"
+          >
             Approved request
           </AwesomeButton>
         ),
     },
   ];
 
-  return <DataTable columns={columns} data={approvePremiumRequest} pagination></DataTable>;
+  return (
+    <>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Premium Request</title>
+    </Helmet>
+      <DataTable
+        columns={columns}
+        data={approvePremiumRequest}
+        pagination
+      ></DataTable>
+    </>
+  );
 };
 
 export default ApprovedPremium;

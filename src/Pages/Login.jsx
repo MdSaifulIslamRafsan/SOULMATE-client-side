@@ -9,6 +9,7 @@ import { useState } from "react";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { handleLoginAccount } = useAuth();
@@ -56,6 +57,11 @@ const Login = () => {
       });
   };
   return (
+    <>
+     <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Login page</title>
+    </Helmet>
     <div className="bg-white relative lg:py-20">
       <div className="flex flex-col items-center min-h-screen justify-between mx-auto max-w-[1440px]  lg:w-10/12 w-11/12 lg:flex-row">
         <div className="flex flex-col items-center w-full lg:flex-row">
@@ -329,6 +335,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import auth from "../Firebase/Firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const Register = () => {
@@ -98,6 +99,11 @@ const Register = () => {
   const [isPassword, setIsPassword] = useState(true);
 
   return (
+    <>
+     <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Register page</title>
+    </Helmet>
     <div className="bg-white relative lg:py-20">
       <div className="flex flex-col items-center min-h-screen justify-between mx-auto max-w-[1440px]  lg:w-10/12 w-11/12 lg:flex-row">
         <div className="flex flex-col items-center w-full lg:flex-row">
@@ -390,6 +396,7 @@ const Register = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

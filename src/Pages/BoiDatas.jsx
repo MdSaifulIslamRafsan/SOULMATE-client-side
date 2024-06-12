@@ -6,6 +6,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import useAuth from "./../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const BoiDatas = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,21 +19,21 @@ const BoiDatas = () => {
   });
   const { register, handleSubmit } = useForm();
 
-  const [pageNumber, setPageNumber] = useState(0); // State to manage current page number
-  const usersPerPage = 4; // Number of users to display per page
-  const pagesVisited = pageNumber * usersPerPage; // Calculate the index of the first user to be displayed on the current page
+  const [pageNumber, setPageNumber] = useState(0); 
+  const usersPerPage = 4; 
+  const pagesVisited = pageNumber * usersPerPage; 
 
   const handlePageChange = ({ selected }) => {
-    setPageNumber(selected); // Update the page number when a new page is selected
+    setPageNumber(selected); 
   };
 
   const onSubmit = (data) => {
     setFilters(data);
-    setPageNumber(0); // Reset page number to 0 when filters are updated
+    setPageNumber(0); 
   };
 
   const { ageMin, ageMax, type, division } = filters;
-  const { data: premiumMemberDatas = [], isLoading } = useQuery({
+  const { data: paginationData = [], isLoading } = useQuery({
     queryKey: ["boiDatas", filters, user?.email],
     queryFn: () =>
       axiosPublic
@@ -43,7 +44,6 @@ const BoiDatas = () => {
           return res.data;
         }),
   });
-
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -60,12 +60,16 @@ const BoiDatas = () => {
     );
   }
 
-  // Paginate the user data
-  const displayUsers = premiumMemberDatas
+  const displayUsers = paginationData
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map((card) => <MemberCard key={card?._id} card={card}></MemberCard>);
 
   return (
+  <>
+  <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Boidatas</title>
+    </Helmet>
     <section className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto my-20 grid gap-5 lg:grid-cols-4">
       <div className="shadow-2xl  lg:col-span-1">
         <div className="flex p-6">
@@ -142,7 +146,7 @@ const BoiDatas = () => {
           previousLabel={"Previous"}
           nextLabel={"Next"}
           className="mt-10 text-center"
-          pageCount={Math.ceil(premiumMemberDatas.length / usersPerPage)}
+          pageCount={Math.ceil(paginationData.length / usersPerPage)}
           onPageChange={handlePageChange}
           containerClassName={"flex justify-center mt-4"}
           pageClassName={"inline-block m-2"}
@@ -163,6 +167,7 @@ const BoiDatas = () => {
         />
       </div>
     </section>
+  </>
   );
 };
 

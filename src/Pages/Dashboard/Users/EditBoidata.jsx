@@ -8,6 +8,7 @@ import { Vortex } from "react-loader-spinner";
 import { AwesomeButton } from "react-awesome-button";
 import Swal from "sweetalert2";
 import useUserBoidata from "../../../Hooks/useUserBoidata";
+import { Helmet } from "react-helmet";
 const BiodataType = [
   { value: "Male", label: "Male" },
   { value: "Female", label: "Female" },
@@ -156,6 +157,12 @@ const EditBoidata = () => {
     );
   }
   return (
+
+    <>
+     <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Edit BoiData</title>
+    </Helmet>
     <div className="max-w-[1440px]  mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h1 className="text-2xl font-bold mb-4">Biodata Form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -582,6 +589,7 @@ const EditBoidata = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { AwesomeButton } from "react-awesome-button";
 import DataTable from "react-data-table-component";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ApprovedContactRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -64,7 +65,15 @@ const ApprovedContactRequest = () => {
     },
   ];
 
-  return <DataTable columns={columns} data={approveContactRequests} pagination></DataTable>;
+  return(
+    <>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Contact Request</title>
+    </Helmet>
+    <DataTable columns={columns} data={approveContactRequests} pagination></DataTable>;
+    </>
+  ) 
 };
 
 export default ApprovedContactRequest;

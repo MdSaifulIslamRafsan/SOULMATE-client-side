@@ -9,6 +9,7 @@ import usePremium from "../Hooks/usePremium";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
 import MemberCard from "../Component/SharedPage/MemberCard";
+import { Helmet } from "react-helmet";
 
 const DetailsPage = () => {
   const axiosPublic = useAxiosPublic();
@@ -106,6 +107,11 @@ const addToFavorites = () => {
     );
   }
   return (
+    <>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Details Page</title>
+    </Helmet>
     <div className="max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto mt-8">
       <div className="mx-auto">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -180,6 +186,7 @@ const addToFavorites = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

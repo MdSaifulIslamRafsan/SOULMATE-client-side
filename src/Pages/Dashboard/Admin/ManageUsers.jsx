@@ -3,6 +3,7 @@ import useAxiosSecure from "./../../../Hooks/useAxiosSecure";
 import DataTable from "react-data-table-component";
 import { AwesomeButton } from "react-awesome-button";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -90,7 +91,15 @@ const ManageUsers = () => {
     },
   ];
 
-  return <DataTable columns={columns} data={usersData} pagination></DataTable>;
+  return (
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SOULMATE || Manage User</title>
+      </Helmet>
+      <DataTable columns={columns} data={usersData} pagination></DataTable>;
+    </>
+  );
 };
 
 export default ManageUsers;

@@ -3,6 +3,7 @@ import { AwesomeButton } from "react-awesome-button";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from './../../../Hooks/useAxiosSecure';
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const GotMarried = () => {
   const axiosSecure = useAxiosSecure();
@@ -44,6 +45,11 @@ const GotMarried = () => {
 
 
     return (
+      <>
+       <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Got married</title>
+    </Helmet>
       <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
@@ -151,6 +157,7 @@ const GotMarried = () => {
           </form>
         </div>
       </section>
+      </>
     );
   };
 

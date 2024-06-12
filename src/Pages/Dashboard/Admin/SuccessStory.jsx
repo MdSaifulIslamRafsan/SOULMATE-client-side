@@ -5,6 +5,8 @@ import { AwesomeButton } from "react-awesome-button";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import SuccessStoryCard from "../../../Component/HomePage/SuccessStoryCard";
+import { Helmet } from "react-helmet";
+
 
 const SuccessStory = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,6 +61,10 @@ const SuccessStory = () => {
 
   return (
     <>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>SOULMATE || Success Story</title>
+    </Helmet>
       <DataTable columns={columns} data={successInfo} pagination></DataTable>
       {isModalOpen && (
         <div id="modelConfirm" className="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4">
