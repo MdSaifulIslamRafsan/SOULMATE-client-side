@@ -5,6 +5,8 @@ admin-email: soulmateadmin@gmail.com
 
 admin-password: Pa$$w0rd!
 
+Server-side:- https://github.com/MdSaifulIslamRafsan/SOULMATE-server-side
+
 ## Overview
 This matrimony website is designed to provide a secure and user-friendly platform for individuals seeking marriage partners. It includes various features such as payment gateway integration, advanced search options, profile management, and administrative controls to ensure a seamless user experience.
 
@@ -65,9 +67,10 @@ npm run dev
 
 ## Technologies Used
 - Frontend: React
-- Backend:  Express
+- Backend: Express
 - Database: MongoDB
 - Payment Gateway: Stripe
 - Hosting & Authentication: Firebase
 - Image Hosting: imgBB
+- Token Management: JWT (JSON Web Tokens)
 
