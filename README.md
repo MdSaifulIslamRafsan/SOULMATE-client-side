@@ -1,4 +1,3 @@
-Assignment12_category_0018
 
 live-link : https://assignment-no-12-115fa.web.app/
 
@@ -6,55 +5,69 @@ admin-email: soulmateadmin@gmail.com
 
 admin-password: Pa$$w0rd!
 
+## Overview
+This matrimony website is designed to provide a secure and user-friendly platform for individuals seeking marriage partners. It includes various features such as payment gateway integration, advanced search options, profile management, and administrative controls to ensure a seamless user experience.
+
+## Installation Steps:- 
+
+- Clone the Repository:
+
+```sh
+git clone https://github.com/MdSaifulIslamRafsan/SOULMATE-client-side.git
+cd SOULMATE-client-side
+```
+
+- Install Dependencies:
+
+```sh
+npm install
+```
+
+- Set Up Environment Variables:
+Create a .env file in the root directory and add the following:
+
+```sh
+# Firebase Configuration
+VITE_APIKEY=your_firebase_api_key
+VITE_AUTHDOMAIN=your_firebase_auth_domain
+VITE_PROJECTID=your_firebase_project_id
+VITE_STORAGEBUCKET=your_firebase_storage_bucket
+VITE_MESSAGINGSENDERID=your_firebase_messaging_sender_id
+VITE_APPID=your_firebase_app_id
+
+# Image Hosting Service Configuration
+VITE_IMAGE_HOSTING_KEY=your_image_hosting_key
+
+# Payment Gateway Configuration
+VITE_PAYMENT_GATEWAY=your_payment_gateway_key
+
+# Base URL of the Application
+VITE_BASEURL=your_base_url
+
+```
+- Run the Application:
+
+```sh
+npm run dev
+```
 
 ## Features
 
 1. **Payment Gateway Integration**
-   - Secure payment processing for premium memberships, service fees, and other transactions.
-   - Supports multiple payment processors such as Stripe and PayPal.
-
-2. **Sort by Age and Marriage Date**
-   - Users can sort profiles by age and marriage date.
-   - Filters available for both ascending and descending order.
+   - Secure Payment Processing: Allows for safe transactions for premium memberships and service fees.
+     
+2. **Admin Dashboard**
+   - User Management: Admins can manage user roles, approve biodata and contact requests, and oversee the entire platform.
 
 3. **Advanced Search Options**
-   - Search profiles by age range, profile type, and division.
-   - Customizable search criteria for targeted results.
+   - Profile Sorting: Users can sort profiles by age and marriage date.
+   - Custom Search: Users can search profiles by age range, profile type, and division.
 
-4. **Add to Favorites**
-   - Users can add profiles to a favorites list for easy access later.
-   - Manage favorite profiles from a dedicated section.
+## Technologies Used
+- Frontend: React
+- Backend:  Express
+- Database: MongoDB
+- Payment Gateway: Stripe
+- Hosting & Authentication: Firebase
+- Image Hosting: imgBB
 
-5. **Edit Biodata**
-   - Users can edit their biographical data at any time.
-   - User-friendly interface for updating personal information and photos.
-
-6. **Premium Biodata Request**
-   - Users can request access to premium biodata for more detailed information.
-   - Premium profiles include additional personal and contact information.
-
-7. **Admin Approval of Biodata Requests**
-   - Admins review and approve biodata requests.
-   - Ensures only authorized users can access premium information.
-
-8. **Admin Approval of Contact Requests**
-   - Admins review and approve contact requests between users.
-   - Protects user privacy and maintains system integrity.
-
-9. **Admin Management of User Roles**
-   - Admins can assign and manage user roles.
-   - Promote users to admin or premium member status as needed.
-
-10. **User Posting**
-    - Users can successfully post updates, messages, and other content.
-    - Ensure user-generated content is visible to the intended audience.
-
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
