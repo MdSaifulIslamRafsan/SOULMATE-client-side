@@ -66,7 +66,7 @@ npm run dev
    - Custom Search: Users can search profiles by age range, profile type, and division.
 
 ## Technologies Used
-- Frontend: React
+- Frontend: React , tailwind
 - Backend: Express
 - Database: MongoDB
 - Payment Gateway: Stripe
