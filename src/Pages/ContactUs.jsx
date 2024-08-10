@@ -2,30 +2,44 @@ import { AwesomeButton } from "react-awesome-button";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
+import Swal from "sweetalert2";
+import { useRef } from "react";
 const ContactUs = () => {
+  const formRef = useRef(); // Create a ref to the form element
+
   const {
     register,
     handleSubmit,
-  } = useForm()
-console.log(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID,import.meta.env.VITE_PUBLIC_KEY);
+    formState: { errors },
+    reset,
+  } = useForm();
 
-  
-  const onSubmit = (data) => {
-
-    console.log(data)
+  const onSubmit = () => {
     emailjs
-      .sendForm(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, data.current, {
-        publicKey: import.meta.env.VITE_PUBLIC_KEY,
-      })
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_PUBLIC_KEY
+      )
       .then(
         () => {
-          console.log('SUCCESS!');
+          Swal.fire({
+            icon: 'success',
+            title: 'Message Sent!',
+            text: 'Your message has been sent successfully.',
+          });
+          reset();
         },
         (error) => {
-          console.log('FAILED...', error.text);
-        },
+          Swal.fire({
+            icon: 'error',
+            title: 'Message Failed',
+            text: `Failed to send your message. Error: ${error.text}`,
+          });
+        }
       );
-  }
+  };
   return (
     <>
       <Helmet>
@@ -118,36 +132,54 @@ console.log(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID,im
             </ul>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="ml-auo space-y-4">
+        <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="ml-auo space-y-4">
           <input
-          {...register("name", { required: true })}
+            {...register("name", { required: "Name is required" })}
             type="text"
             name="name"
             placeholder="Name"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name.message}</p>
+          )}
           <input
             type="email"
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "Entered value does not match email format",
+              },
+            })}
             name="email"
             placeholder="Email"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
           <input
             type="text"
-            {...register("subject", { required: true })}
+            {...register("subject", { required: "Subject is required" })}
             name="subject"
             placeholder="Subject"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
+          {errors.subject && (
+            <p className="text-red-500 text-sm">{errors.subject.message}</p>
+          )}
           <textarea
             placeholder="Message"
             name="message"
-            {...register("message", { required: true })}
+            {...register("message", { required: "Message is required" })}
             rows={6}
             className="w-full rounded-md px-4 bg-gray-100 text-sm pt-3 outline-[#007bff]"
             defaultValue={""}
           />
+          {errors.message && (
+            <p className="text-red-500 text-sm">{errors.message.message}</p>
+          )}
           <AwesomeButton className="w-full" type="primary">
             Send
           </AwesomeButton>
