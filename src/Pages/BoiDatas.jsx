@@ -59,11 +59,12 @@ const BoiDatas = () => {
       </div>
     );
   }
-
+  
   const displayUsers = paginationData
-    .slice(pagesVisited, pagesVisited + usersPerPage)
-    .map((card) => <MemberCard key={card?._id} card={card}></MemberCard>);
-
+  .slice(pagesVisited, pagesVisited + usersPerPage)
+  .map((card) => <MemberCard key={card?._id} card={card}></MemberCard>);
+  
+  const isExistPaginationData = paginationData?.filter((data) => data.biodata_id );
   return (
   <>
   <Helmet>
@@ -146,7 +147,7 @@ const BoiDatas = () => {
           previousLabel={"Previous"}
           nextLabel={"Next"}
           className="mt-10 text-center"
-          pageCount={Math.ceil(paginationData.length / usersPerPage)}
+          pageCount={Math.ceil(isExistPaginationData.length / usersPerPage)}
           onPageChange={handlePageChange}
           containerClassName={"flex justify-center mt-4"}
           pageClassName={"inline-block m-2"}

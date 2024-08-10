@@ -1,7 +1,31 @@
 import { AwesomeButton } from "react-awesome-button";
 import { Helmet } from "react-helmet";
-
+import { useForm } from "react-hook-form";
+import emailjs from '@emailjs/browser';
 const ContactUs = () => {
+  const {
+    register,
+    handleSubmit,
+  } = useForm()
+console.log(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID,import.meta.env.VITE_PUBLIC_KEY);
+
+  
+  const onSubmit = (data) => {
+
+    console.log(data)
+    emailjs
+      .sendForm(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, data.current, {
+        publicKey: import.meta.env.VITE_PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  }
   return (
     <>
       <Helmet>
@@ -94,24 +118,32 @@ const ContactUs = () => {
             </ul>
           </div>
         </div>
-        <form className="ml-auo space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="ml-auo space-y-4">
           <input
+          {...register("name", { required: true })}
             type="text"
+            name="name"
             placeholder="Name"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
           <input
             type="email"
+            {...register("email", { required: true })}
+            name="email"
             placeholder="Email"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
           <input
             type="text"
+            {...register("subject", { required: true })}
+            name="subject"
             placeholder="Subject"
             className="w-full rounded-md py-3 px-4 bg-gray-100 text-sm outline-[#007bff]"
           />
           <textarea
             placeholder="Message"
+            name="message"
+            {...register("message", { required: true })}
             rows={6}
             className="w-full rounded-md px-4 bg-gray-100 text-sm pt-3 outline-[#007bff]"
             defaultValue={""}
