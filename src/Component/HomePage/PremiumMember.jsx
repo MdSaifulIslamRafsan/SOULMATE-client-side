@@ -71,7 +71,7 @@ const PremiumMember = () => {
       </Dropdown>
       </div>
       <div className="mb-20 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7">
-        {premiumMemberDatas?.map((card) => (
+        {premiumMemberDatas?.slice(0,6).map((card) => (
           <MemberCard key={card?._id} card={card}></MemberCard>
         ))}
       </div>
