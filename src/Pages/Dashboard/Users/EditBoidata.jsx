@@ -2,7 +2,6 @@
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import { Vortex } from "react-loader-spinner";
 import { AwesomeButton } from "react-awesome-button";
@@ -585,7 +584,7 @@ const EditBoidata = () => {
         </div>
 
         <div className="mb-4 mt-8 text-center">
-        <AwesomeButton size="large" type="primary">Save</AwesomeButton>
+        <AwesomeButton size="large" className="!z-0" type="primary">Save</AwesomeButton>
         </div>
       </form>
     </div>
