@@ -1,5 +1,4 @@
-import Lottie from "lottie-react";
-import about from "../assets/About.json";
+
 import { Helmet } from "react-helmet";
 
 const AboutUs = () => {
@@ -27,7 +26,8 @@ const AboutUs = () => {
             complements you.
           </p>
         </div>
-        <div className="flex">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="flex">
                 <div className="">
                   <h4 className="text-lg font-medium leadi ">Our Story</h4>
                   <p className="mt-2 ">
@@ -54,6 +54,7 @@ const AboutUs = () => {
                   </p>
                 </div>
               </div>
+        </div>
         <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <div className="mt-4 space-y-12">
@@ -121,7 +122,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div aria-hidden="true" className="mt-10 lg:mt-0">
-          <Lottie animationData={about} loop={true} />
+         <img src="aboutUs.gif" className="w-full" alt="aboutUs" />
             
           </div>
         </div>

@@ -111,33 +111,16 @@ const DetailsPage = () => {
       </Helmet>
       <div className="max-w-[1440px]  w-11/12 mx-auto mt-8">
         <div className="mx-auto">
-          <div className="rounded-lg overflow-hidden">
+          <div className="rounded-lg">
             <div className="">
               <div className="grid grid-cols-1 mt-10 lg:grid-cols-2 gap-10">
                 <div className="">
                   <img
                     src={profile_image}
                     alt="Profile Image"
-                    className="w-full h-96 rounded-lg"
+                    className="w-full max-h-[530px] h-full rounded-lg"
                   />
-                  <div className="mt-4 p-6 justify-center flex flex-col gap-5 md:flex-row">
-                    {!isAdmin && (
-                      <AwesomeButton
-                        onPress={() => addToFavorites()}
-                        type="primary"
-                      >
-                        Add to Favorites
-                      </AwesomeButton>
-                    )}
-
-                    {!(isPremium || isAdmin) && (
-                      <Link to={`/checkout/${biodata_id}`}>
-                        <AwesomeButton className="w-full" type="primary">
-                          Request Contact Information
-                        </AwesomeButton>
-                      </Link>
-                    )}
-                  </div>
+                
                 </div>
 
                 <div>
@@ -151,7 +134,7 @@ const DetailsPage = () => {
                         alt="race"
                       />
                       <p className="uppercase font-semibold">Race:</p>
-                      <h3 className="text-2xl font-bold">{race}</h3>
+                      <h3 className="text-xl font-bold">{race}</h3>
                     </div>
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
@@ -160,7 +143,7 @@ const DetailsPage = () => {
                         alt="age"
                       />
                       <p className="uppercase font-semibold">Age:</p>
-                      <h3 className="text-2xl font-bold">{age}</h3>
+                      <h3 className="text-xl font-bold">{age}</h3>
                     </div>
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
@@ -169,7 +152,7 @@ const DetailsPage = () => {
                         alt="gender"
                       />
                       <p className="uppercase font-semibold">gender:</p>
-                      <h3 className="text-2xl font-bold">{biodata_type}</h3>
+                      <h3 className="text-xl font-bold">{biodata_type}</h3>
                     </div>
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
@@ -178,10 +161,10 @@ const DetailsPage = () => {
                         alt="weight"
                       />
                       <p className="uppercase font-semibold">weight:</p>
-                      <h3 className="text-2xl font-bold">{weight}</h3>
+                      <h3 className="text-xl font-bold">{weight}</h3>
                     </div>
                   </div>
-
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <p className="text-gray-600">
                     <span className="font-bold">Date of Birth:</span>{" "}
                     {date_of_birth}
@@ -234,8 +217,30 @@ const DetailsPage = () => {
                       </p>
                     </>
                   )}
-                </div>
+                  </div>
+                  <div className="mt-4 p-6 justify-center flex flex-col gap-5 md:flex-row">
+                    {!isAdmin && (
+                      <AwesomeButton
+                        onPress={() => addToFavorites()}
+                        type="primary"
+                      >
+                        Add to Favorites
+                      </AwesomeButton>
+                    )}
+
+                    {!(isPremium || isAdmin) && (
+                      <Link to={`/checkout/${biodata_id}`}>
+                        <AwesomeButton className="w-full" type="primary">
+                          Request Contact Information
+                        </AwesomeButton>
+                      </Link>
+                    )}
               </div>
+                 
+                </div>
+                
+              </div>
+              
             </div>
           </div>
 
