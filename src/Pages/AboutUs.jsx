@@ -14,7 +14,7 @@ const AboutUs = () => {
           <h2 className="text-3xl font-bold text-center sm:text-5xl">
             About Us
           </h2>
-          <p className="max-w-3xl mx-auto mt-4 text-xl text-center ">
+          <p className="max-w-3xl mx-auto mt-4 text-2xl text-center ">
             Welcome to SOULMATE!
           </p>
           <p className="mt-5">
@@ -26,11 +26,11 @@ const AboutUs = () => {
             complements you.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div className="flex">
                 <div className="">
-                  <h4 className="text-lg font-medium leadi ">Our Story</h4>
-                  <p className="mt-2 ">
+                  <h4 className="text-2xl font-bold">Our Story</h4>
+                  <p className="mt-2 text-justify">
                     Founded in 2022, SOULMATE was born out of the need for a
                     more personalized, secure, and efficient way to find life
                     partners online. Our founders, Liam White, realized the
@@ -44,42 +44,36 @@ const AboutUs = () => {
               </div>
               <div className="flex">
                 <div className="">
-                  <h4 className="text-lg font-medium leadi ">Our Vision</h4>
-                  <p className="mt-2 ">
-                    We envision a world where everyone can find a compatible
-                    partner with ease and confidence. By leveraging advanced
-                    technologies and fostering a community of genuine
-                    individuals, we aim to create a trustworthy and
-                    user-friendly environment for matrimonial searches.
-                  </p>
+                  <h4 className="text-2xl font-bold">Our Vision</h4>
+                  <p className="mt-2 text-justify">
+                  We envision a world where everyone can find a compatible partner with ease and confidence. By leveraging advanced technologies and fostering a community of genuine individuals, we aim to create a trustworthy and user-friendly environment for matrimonial searches. Our mission is to bring people together in a secure and meaningful way.                  </p>
                 </div>
               </div>
         </div>
         <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="mt-4 space-y-12">
+            <div className="mt-4 lg:order-first order-last space-y-12">
               <div className="flex">
                 <div className="ml-4">
-                  <h4 className="text-lg font-medium leadi ">Our Values</h4>
+                  <h4 className="text-2xl font-bold">Our Values</h4>
                   <ul className="mt-2 pl-5 list-disc">
                     <li>
-                      Integrity: We maintain the highest standards of integrity
+                     <span className="font-bold"> Integrity:</span> We maintain the highest standards of integrity
                       in all our actions and services.
                     </li>
                     <li>
-                      Security: Your safety and privacy are our top priorities.
+                    <span className="font-bold">Security:</span> Your safety and privacy are our top priorities.
                       We use cutting-edge security measures to protect your
                       personal information.
                     </li>
                     <li>
-                      {" "}
-                      Inclusivity: We welcome individuals from all walks of life
+                      <span className="font-bold"> Inclusivity:</span> We welcome individuals from all walks of life
                       and believe in the power of diversity. Innovation: We
                       continuously improve our platform with the latest
                       technologies to enhance your experience.
                     </li>
                     <li>
-                      Support: Our dedicated support team is always here to help
+                      <span className="font-bold"> Support:</span> Our dedicated support team is always here to help
                       you at every step of your journey.
                     </li>
                   </ul>
@@ -87,48 +81,45 @@ const AboutUs = () => {
               </div>
               <div className="flex">
                 <div className="ml-4">
-                  <h4 className="text-lg font-medium leadi ">What We Offer</h4>
+                  <h4 className="text-2xl font-bold">What We Offer</h4>
                   <ul className="mt-2 pl-5 list-disc">
                     <li>
-                      Verified Profiles: Each profile undergoes a thorough
+                      <span className="font-bold"> Verified Profiles:</span> Each profile undergoes a thorough
                       verification process to ensure authenticity and
                       reliability.
                     </li>
                     <li>
-                      Advanced Search Filters: Find potential matches based on
+                      <span className="font-bold"> Advanced Search Filters:</span> Find potential matches based on
                       your preferences, such as age, occupation, location, and
                       more.
                     </li>
                     <li>
                       {" "}
-                      Success Stories: Read inspiring stories of couples who
+                      <span className="font-bold"> Success Stories:</span> Read inspiring stories of couples who
                       found their perfect match through our platform.
                     </li>
                     <li>
-                      Premium Memberships: Enjoy exclusive features and higher
+                      <span className="font-bold"> Premium Memberships:</span> Enjoy exclusive features and higher
                       visibility with our premium membership plans.
                     </li>
                     <li>
-                      Responsive Design: Access our platform seamlessly from any
+                      <span className="font-bold"> Responsive Design:</span> Access our platform seamlessly from any
                       device, be it mobile, tablet, or desktop.
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="">
-            
              
             </div>
-            </div>
           </div>
-          <div aria-hidden="true" className="mt-10 lg:mt-0">
+          <div aria-hidden="true" className="mt-10 order-first lg:order-last lg:mt-0">
          <img src="aboutUs.gif" className="w-full" alt="aboutUs" />
             
           </div>
         </div>
       </div>
-      <div className="ml-4">
-                <h4 className="text-lg font-medium leadi ">Join Us</h4>
+      <div className="ml-4 mt-8">
+                <h4 className="text-2xl font-bold">Join Us</h4>
                 <p className="mt-2 ">
                   Join the thousands of happy couples who have found their life
                   partners on SOULMATE. Whether {`you're`}
