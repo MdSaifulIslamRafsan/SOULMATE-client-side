@@ -66,12 +66,12 @@ const HowItWorks = () => {
                 onClick={() => setCurrentStep(index)}
                 className={`w-full shadow-md rounded-md border-2 transition-all duration-500 cursor-pointer ${
                   index === currentStep
-                    ? "border-primary border-2 bg-primary/10"
+                    ? "border-blue-500 border-2 bg-blue-500/10"
                     : "opacity-70 border-2"
                 }`}
               >
                 <div className="p-6">
-                  <div className="text-2xl font-bold text-primary mb-1">
+                  <div className="text-2xl font-bold text-blue-700 uppercase mb-1">
                     Step {step?.step}
                   </div>
                   <h3 className="text-xl font-semibold mb-1">{step?.title}</h3>
