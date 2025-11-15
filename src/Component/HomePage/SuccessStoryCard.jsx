@@ -5,7 +5,7 @@ const SuccessStoryCard = ({ cardInfo }) => {
   const { coupleImage, marriageDate, successStoryText } = cardInfo;
   const reviewStar = Number(cardInfo.reviewStar) || 0;
   return (
-    <div className="p-4  max-w-md border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col items-center">
+    <div className="p-4   border-2  rounded-2xl hover:shadow-lg  flex flex-col items-center">
       <img
         src={coupleImage}
         className="shadow w-full h-60 rounded-lg overflow-hidden border"

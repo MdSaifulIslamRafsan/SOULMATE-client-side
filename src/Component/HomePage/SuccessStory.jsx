@@ -82,7 +82,7 @@ const SuccessStory = () => {
           </div>
         </Dropdown>
       </div>
-      <div className="mb-20 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5 ">
+      <div className="mb-20 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10 ">
         {successStory.map((cardInfo) => (
           <SuccessStoryCard
             cardInfo={cardInfo}
