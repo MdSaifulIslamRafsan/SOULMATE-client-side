@@ -97,7 +97,7 @@ const ManageUsers = () => {
         <meta charSet="utf-8" />
         <title>SOULMATE || Manage User</title>
       </Helmet>
-      <DataTable columns={columns} data={usersData} pagination></DataTable>;
+      <DataTable columns={columns} data={usersData} pagination></DataTable>
     </>
   );
 };

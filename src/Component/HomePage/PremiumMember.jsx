@@ -4,12 +4,13 @@ import { Vortex } from "react-loader-spinner";
 import { useState } from "react";
 import { Dropdown, Button } from "keep-react";
 import MemberCard from "../SharedPage/MemberCard";
+import { FaChevronDown } from "react-icons/fa";
 
 const PremiumMember = () => {
   const axiosPublic = useAxiosPublic();
   const [sortOrder, setSortOrder] = useState("");
   const { data: premiumMemberDatas = [], isLoading } = useQuery({
-    queryKey: ["premiumMember" , sortOrder],
+    queryKey: ["premiumMember", sortOrder],
     queryFn: () =>
       axiosPublic.get(`/premiumMember?order=${sortOrder}`).then((res) => {
         return res.data;
@@ -34,7 +35,7 @@ const PremiumMember = () => {
 
   return (
     <section className="mt-20 max-w-[1440px]  lg:w-10/12 w-11/12 mx-auto">
-      <div className="lg:w-2/3 space-y-3 w-full mx-auto text-center">
+      <div className="lg:w-2/3 space-y-3 w-full mx-auto  text-center">
         <h1 className="text-xl lg:text-4xl font-bold">
           Premium Member Profiles
         </h1>
@@ -45,33 +46,46 @@ const PremiumMember = () => {
         </p>
       </div>
       <div className="flex justify-center">
-      <Dropdown
-        action={<Button>ordering</Button>}
-        actionClassName="my-10 border-none"
-      >
-      <div>
-      <Dropdown.List>
-          <Dropdown.Item>
-            <button onClick={()=>setSortOrder('')} className="text-body-3 font-medium text-metal-800">
-              normal
-            </button>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <button onClick={()=>setSortOrder('ascending')} className="text-body-3 font-medium text-metal-800">
-              ascending
-            </button>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <button onClick={()=>setSortOrder('descending')} className="text-body-3 font-medium text-metal-800">
-              descending
-            </button>
-          </Dropdown.Item>
-        </Dropdown.List>
-      </div>
-      </Dropdown>
+        <Dropdown
+          action={
+            <Button>
+              ordering <FaChevronDown className="ml-2" />
+            </Button>
+          }
+          actionClassName="my-5 border-none"
+        >
+          <div>
+            <Dropdown.List>
+              <Dropdown.Item>
+                <button
+                  onClick={() => setSortOrder("")}
+                  className="text-body-3 font-medium text-metal-800"
+                >
+                  normal
+                </button>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <button
+                  onClick={() => setSortOrder("ascending")}
+                  className="text-body-3 font-medium text-metal-800"
+                >
+                  ascending
+                </button>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <button
+                  onClick={() => setSortOrder("descending")}
+                  className="text-body-3 font-medium text-metal-800"
+                >
+                  descending
+                </button>
+              </Dropdown.Item>
+            </Dropdown.List>
+          </div>
+        </Dropdown>
       </div>
       <div className="mb-20 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7">
-        {premiumMemberDatas?.slice(0,6).map((card) => (
+        {premiumMemberDatas?.slice(0, 6).map((card) => (
           <MemberCard key={card?._id} card={card}></MemberCard>
         ))}
       </div>

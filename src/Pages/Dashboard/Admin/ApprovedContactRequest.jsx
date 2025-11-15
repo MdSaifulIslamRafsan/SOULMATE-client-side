@@ -71,7 +71,7 @@ const ApprovedContactRequest = () => {
       <meta charSet="utf-8" />
       <title>SOULMATE || Contact Request</title>
     </Helmet>
-    <DataTable columns={columns} data={approveContactRequests} pagination></DataTable>;
+    <DataTable columns={columns} data={approveContactRequests} pagination></DataTable>
     </>
   ) 
 };

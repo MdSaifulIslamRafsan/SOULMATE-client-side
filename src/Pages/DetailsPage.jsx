@@ -130,7 +130,7 @@ const DetailsPage = () => {
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
                         src="/race.gif"
-                        className="h-20 text-center w-40 inline-block p-2"
+                        className=" h-24 text-center w-24 inline-block p-2"
                         alt="race"
                       />
                       <p className="uppercase font-semibold">Race:</p>
@@ -139,7 +139,7 @@ const DetailsPage = () => {
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
                         src="/age.gif"
-                        className="h-20 text-center w-40 inline-block p-2"
+                        className=" h-24 text-center w-24 inline-block p-2"
                         alt="age"
                       />
                       <p className="uppercase font-semibold">Age:</p>
@@ -148,7 +148,7 @@ const DetailsPage = () => {
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
                         src={biodata_type === "Male" ? "/male.gif" : "/female.gif"}
-                        className="h-20 text-center w-40 inline-block p-2"
+                        className=" h-24 text-center w-24 inline-block p-2"
                         alt="gender"
                       />
                       <p className="uppercase font-semibold">gender:</p>
@@ -157,7 +157,7 @@ const DetailsPage = () => {
                     <div className="text-center py-2 rounded-md shadow-lg">
                       <img
                         src="/weight.gif"
-                        className="h-20 text-center w-40 inline-block p-2"
+                        className="h-24 text-center w-24 inline-block p-2"
                         alt="weight"
                       />
                       <p className="uppercase font-semibold">weight:</p>
